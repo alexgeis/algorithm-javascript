@@ -15,6 +15,7 @@
  * @return true/false if the target value exists within the provided array
  */
 
+//RECURSIVE SOLUTION
 function binarySearch(target, array) {
 	// first we sort the provided array
 	let sortedArray = array.filter((el) => !isNaN(el)).sort((a, b) => a - b); // if we're looking strictly at integers
