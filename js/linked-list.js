@@ -15,9 +15,37 @@
  * @return true/false if the target value exists within the provided array
  */
 
-const LinkedList = function () {};
+const ListNode = (value = null, nextNode = null) => {
+	return {
+		value,
+		nextNode,
+	};
+};
 
-const Node = function () {
-	function value() {}
-	function nextNode() {}
+const LinkedList = () => {
+	let head = null;
+	let size = 0;
+
+	const append = (value) => {
+		const newNode = ListNode(value);
+		if (head === null) {
+			head = newNode;
+		} else {
+			let pointer = head;
+			while (pointer.nextNode !== null) {
+				pointer = pointer.nextNode;
+			}
+			pointer.nextNode = newNode;
+		}
+		size++;
+	};
+	function prepend(value) {}
+	function size() {}
+	function head() {}
+	function tail() {}
+	function at(index) {}
+	function pop() {}
+	function contains(value) {}
+	function find(value) {}
+	function toString() {}
 };
