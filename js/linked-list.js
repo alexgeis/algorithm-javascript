@@ -96,7 +96,7 @@ const LinkedList = () => {
 		return false;
 	};
 
-	function find(value) {
+	const find = (value) => {
 		let indexCounter = 0;
 		let pointer = head;
 		while (pointer !== null) {
@@ -105,9 +105,9 @@ const LinkedList = () => {
 			indexCounter++;
 		}
 		return -1;
-	}
+	};
 
-	function toString() {
+	const toString = () => {
 		let pointer = head;
 		let listString = "";
 		while (pointer !== null) {
@@ -115,5 +115,27 @@ const LinkedList = () => {
 			pointer = pointer.nextNode;
 		}
 		return `${listString}null`;
-	}
+	};
+
+	const insertAt = (value, index) => {
+		if (index === 0) {
+			prepend(value);
+			return;
+		}
+
+		const nodeBeforeIndex = at(index - 1);
+		const newNode = ListNode(value, nodeBeforeIndex.nextNode);
+		nodeBeforeIndex.nextNode = newNode;
+		size++;
+	};
+
+	const removeAt = (index) => {
+		if (index === 0) {
+			head = head.nextNode;
+			return;
+		}
+		const nodeBeforeIndex = at(index - 1);
+		nodeBeforeIndex.nextNode = nodeBeforeIndex.nextNode.nextNode;
+		size--;
+	};
 };
