@@ -1,6 +1,7 @@
 /**
  * Implementation of binary search.
  * log (base 2) * n = # of max iterations to find value
+ * n = 2 ^ # of max iterations to find value
  * worst case: runs in O(log n), best case: Ω(1)
  * Steps:
  * 1) sort the array

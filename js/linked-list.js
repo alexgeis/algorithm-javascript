@@ -1,4 +1,5 @@
 /**
+ * reference url: https://people.engr.ncsu.edu/efg/210/s99/Notes/LinkedList.1.html
  * @param value the data contained within the linked list node
  * @param nextNode pointer reference to the next node in the linked list
  * @return value and nextNode pointer - both null by default
