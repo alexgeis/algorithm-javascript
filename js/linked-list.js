@@ -96,6 +96,24 @@ const LinkedList = () => {
 		return false;
 	};
 
-	function find(value) {}
-	function toString() {}
+	function find(value) {
+		let indexCounter = 0;
+		let pointer = head;
+		while (pointer !== null) {
+			if (pointer.value === value) return indexCounter;
+			pointer = pointer.nextNode;
+			indexCounter++;
+		}
+		return -1;
+	}
+
+	function toString() {
+		let pointer = head;
+		let listString = "";
+		while (pointer !== null) {
+			listString += `( ${pointer.value} ) -> `;
+			pointer = pointer.nextNode;
+		}
+		return `${listString}null`;
+	}
 };
