@@ -1,5 +1,6 @@
 /**
  * Implementation of binary search.
+ * log (base 2) * n = # of max iterations to find value
  * worst case: runs in O(log n), best case: Ω(1)
  * Steps:
  * 1) sort the array
@@ -40,8 +41,12 @@ function binarySearch(target, array) {
 		// search in the right half of mid
 		else return recursiveFunction(arr, target, mid + 1, end);
 	};
+
 	return recursiveFunction(sortedArray, target, startIndex, endIndex);
 }
 
-let testArray = [6, 5, 1, 7, 2, 3, 4, 5, 6, 8, 9, 5, 2, 4, 6, 7, 8, 1]; // length: 18
-binarySearch(9, testArray);
+let primes = [
+	2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
+	73, 79, 83, 89, 97,
+]; // length: 18
+binarySearch(29, primes);
