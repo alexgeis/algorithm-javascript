@@ -1,18 +1,7 @@
 /**
- * Implementation of linked list.
- * worst case: runs in O(log n), best case: Ω(1)
- * Steps:
- * 1) sort the array
- * 2) base condition - repeat until sub array is size 0
- * 3) calculate midoint
- *  3.1) if target is midpoint, stop
- * 4) if target > mid, then repeat f(n) with new array start == mid index + 1
- * 5) if target < mid, then repeat f(n) with new array end == mid index - 1
- * 6) one base condition is met, return true/false to confirm if target value exists in provided array
- *
- * @param target the value for which we are searching
- * @param array array of integers in which we'll search for our target value
- * @return true/false if the target value exists within the provided array
+ * @param value the data contained within the linked list node
+ * @param nextNode pointer reference to the next node in the linked list
+ * @return value and nextNode pointer - both null by default
  */
 
 const ListNode = (value = null, nextNode = null) => {
@@ -26,23 +15,54 @@ const LinkedList = () => {
 	let head = null;
 	let size = 0;
 
+	// add new node to end of linked list
 	const append = (value) => {
 		const newNode = ListNode(value);
+		// if no head node exists, newNode becomes head node
 		if (head === null) {
 			head = newNode;
 		} else {
+			// start linked list traversal at head node
 			let pointer = head;
+			// traverse through linked list by the .nextNode method
 			while (pointer.nextNode !== null) {
 				pointer = pointer.nextNode;
 			}
+			// once a node with .nextNode value "null" is found (the end of the linked list), the newNode reference is attached to the node's .nextNode method
 			pointer.nextNode = newNode;
 		}
 		size++;
 	};
-	function prepend(value) {}
-	function size() {}
-	function head() {}
-	function tail() {}
+
+	const prepend = (value) => {
+		// create newNode and pass in the current head node as the @param head
+		const newNode = ListNode(value, head);
+		head = newNode;
+		size++;
+	};
+
+	const getSize = () => {
+		console.log(size);
+		return size;
+	};
+
+	const getHead = () => {
+		console.log(head);
+		return head;
+	};
+
+	const tail = () => {
+		// start linked list traversal at head node
+		let pointer = head;
+		// traverse through linked list by the .nextNode method
+		while (pointer.nextNode !== null) {
+			pointer = pointer.nextNode;
+		}
+		// once a node with .nextNode value "null" is found (the end of the linked list), print the tail node
+		console.log(pointer);
+		return pointer;
+	};
+
 	function at(index) {}
 	function pop() {}
 	function contains(value) {}
