@@ -63,8 +63,30 @@ const LinkedList = () => {
 		return pointer;
 	};
 
-	function at(index) {}
-	function pop() {}
+	function at(index) {
+		let indexCounter = 0;
+		let pointer = head;
+		while (indexCounter < index) {
+			// optional chaining operator allows, if the nested value doesn't exist, for return of "undefined" rather than an error if reference is nullish
+			pointer = pointer?.nextNode;
+			indexCounter++;
+		}
+		return pointer;
+	}
+
+	function pop() {
+		let currentPointer = head;
+		let nextPointer = head.nextNode;
+		while (nextPointer.nextNode !== null) {
+			currentPointer = currentPointer.nextNode;
+			nextPointer = nextPointer.nextNode;
+		}
+		const returnNode = nextPointer;
+		currentPointer.nextNode = null;
+		size--;
+		return returnNode;
+	}
+
 	function contains(value) {}
 	function find(value) {}
 	function toString() {}
