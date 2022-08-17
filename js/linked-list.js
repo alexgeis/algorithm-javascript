@@ -63,7 +63,7 @@ const LinkedList = () => {
 		return pointer;
 	};
 
-	function at(index) {
+	const at = (index) => {
 		let indexCounter = 0;
 		let pointer = head;
 		while (indexCounter < index) {
@@ -72,9 +72,9 @@ const LinkedList = () => {
 			indexCounter++;
 		}
 		return pointer;
-	}
+	};
 
-	function pop() {
+	const pop = () => {
 		let currentPointer = head;
 		let nextPointer = head.nextNode;
 		while (nextPointer.nextNode !== null) {
@@ -85,9 +85,17 @@ const LinkedList = () => {
 		currentPointer.nextNode = null;
 		size--;
 		return returnNode;
-	}
+	};
 
-	function contains(value) {}
+	const contains = (value) => {
+		let pointer = head;
+		while (pointer !== null) {
+			if (pointer.value === value) return true;
+			pointer = pointer.nextNode;
+		}
+		return false;
+	};
+
 	function find(value) {}
 	function toString() {}
 };
