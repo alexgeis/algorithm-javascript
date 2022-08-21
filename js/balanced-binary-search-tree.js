@@ -17,15 +17,19 @@ const Node = function (data) {
 
 let root = null;
 
-/* A function sorts an array */
+/* helper function that sorts an array */
 function sortArray(array) {
-	return array.sort((a, b) => a - b);
+	return Array.isArray(array)
+		? array.sort((a, b) => a - b)
+		: console.log("input value is not an array");
 }
 
 /**
  * @name sortedArrayToBST
  * @description A function that constructs Balanced Binary Search Tree
 from a sorted array 
+ * Time Complexity: O(N) 
+ * Auxiliary Space: O(1)
  * log (base 2) * n = # of max iterations to find value
  * n = 2 ^ # of max iterations to find value
  * worst case: runs in O(log n), best case: Ω(1)
@@ -60,14 +64,7 @@ function sortedArrayToBST(arr, start, end) {
 	return node;
 }
 /* A utility function to print preorder traversal of BST */
-function preOrder(node) {
-	if (node == null) {
-		return;
-	}
-	console.log(node.data + " ");
-	preOrder(node.left);
-	preOrder(node.right);
-}
+
 /* A utility function to print inOrder traversal of BST */
 function inOrder(node) {
 	if (node == null) {
@@ -87,18 +84,25 @@ function postOrder(node) {
 	postOrder(node.left);
 }
 
-function createBa
+const BalancedBSTmodule = (function (array) {
+	const sortedArray = sortArray(array);
+	const searchTree = sortedArrayToBST(sortedArray, 0, sortedArray.length - 1);
 
-const BalancedBSTmodule = {
+	return {
+		preOrder: preOrder(searchTree),
+		inOrder: inOrder(searchTree),
+		postOrder: postOrder(searchTree),
+	};
+})();
 
-}
-
-const arr = [1, 2, 3, 4, 5, 6, 7];
-const arrEnd = arr.length - 1;
-root = sortedArrayToBST(arr, 0, arrEnd);
-document.write("Preorder traversal of constructed BST<br>");
-preOrder(root);
-document.write("Inorder traversal of constructed BST<br>");
-inOrder(root);
-document.write("Postorder traversal of constructed BST<br>");
-postOrder(root);
+const arr = [1, 10, 15, 2, 7, 4, 5, 4, 8];
+BalancedBSTmodule.preOrder(arr);
+BalancedBSTmodule.inOrder(arr);
+BalancedBSTmodule.postOrder(arr);
+// root = sortedArrayToBST(arr, 0, arrEnd);
+// document.write("Preorder traversal of constructed BST<br>");
+// preOrder(root);
+// document.write("Inorder traversal of constructed BST<br>");
+// inOrder(root);
+// document.write("Postorder traversal of constructed BST<br>");
+// postOrder(root);
