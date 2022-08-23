@@ -1,4 +1,4 @@
-const Knight = function () {
+const Knight = (function () {
 	const moves = [
 		[-2, -1],
 		[-2, 1],
@@ -66,7 +66,7 @@ const Knight = function () {
 	}
 
 	return { findShortestDistance };
-};
+})();
 
 const Point = function (x, y, distance = 0, previous = null) {
 	return { x, y, distance, previous };
@@ -75,6 +75,4 @@ const Point = function (x, y, distance = 0, previous = null) {
 const start = Point(3, 3);
 const end = Point(4, 3);
 
-const myKnight = Knight();
-
-myKnight.findShortestDistance(start, end);
+Knight.findShortestDistance(start, end);
