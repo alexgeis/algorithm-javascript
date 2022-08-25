@@ -1,4 +1,5 @@
 const Knight = (function () {
+	// all available relative moves for a knight piece
 	const moves = [
 		[-2, -1],
 		[-2, 1],
@@ -9,29 +10,39 @@ const Knight = (function () {
 		[2, -1],
 		[2, 1],
 	];
-
+	// define the chess board limits
 	function isValid(x, y) {
 		return x >= 0 && x <= 8 && y >= 0 && y <= 8 ? true : false;
 	}
+	// does point exist in array (must match x and y)
+	function isItIncluded(arr, point) {
+		for (let i = 0; i < arr.length; i++) {
+			if (arr[i].x === point.x && arr[i].y === point.y) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	function findShortestDistance(start, end) {
+		// log of visited points
 		const visited = [];
+		// queue for node traversal tracking
 		const queue = [];
-
 		queue.push(start);
 
 		// CONTINUE UNTIL QUEUE IS EMPTY
 		while (queue.length > 0) {
-			// DEQUEUE THE CURPOINT
-			const curPoint = queue.shift();
+			// DEQUEUE THE CURRENT POINT
+			const currentPoint = queue.shift();
 
-			const x = curPoint.x;
-			const y = curPoint.y;
-			const distance = curPoint.distance;
+			const x = currentPoint.x;
+			const y = currentPoint.y;
+			const distance = currentPoint.distance;
 
 			// IF POINT IS THE DESTINATION RETURN ALL THE PREVIOUS POINTS
 			if (x === end.x && y === end.y) {
-				let myPoint = curPoint;
+				let myPoint = currentPoint;
 
 				console.log(`You made it in ${distance} moves! Here's your path:`);
 				while (myPoint) {
@@ -41,8 +52,8 @@ const Knight = (function () {
 				return distance;
 			}
 			// ELSE IF POINT IS NOT VISITED
-			if (!isItIncluded(visited, curPoint)) {
-				visited.push(curPoint);
+			if (!isItIncluded(visited, currentPoint)) {
+				visited.push(currentPoint);
 				// FOR EACH POSSIBLE POINT
 				for (let i = 0; i < moves.length; i++) {
 					const x1 = x + moves[i][0];
@@ -50,19 +61,10 @@ const Knight = (function () {
 
 					// IF POSSIBLE POINT IS INSIDE THE LIMITS OF A CHESSBOARD PUSH IT TO QUEUE
 					if (isValid(x1, y1))
-						queue.push(Point(x1, y1, distance + 1, curPoint));
+						queue.push(Point(x1, y1, distance + 1, currentPoint));
 				}
 			}
 		}
-	}
-
-	function isItIncluded(arr, point) {
-		for (let i = 0; i < arr.length; i++) {
-			if (arr[i].x === point.x && arr[i].y === point.y) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	return { findShortestDistance };
